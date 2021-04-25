@@ -2,111 +2,14 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lchen1388.github.io</id>
     <title>Gridea</title>
-    <updated>2020-12-10T01:20:40.515Z</updated>
+    <updated>2021-04-25T01:12:12.404Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lchen1388.github.io"/>
     <link rel="self" href="https://lchen1388.github.io/atom.xml"/>
     <subtitle>温故而知新</subtitle>
     <logo>https://lchen1388.github.io/images/avatar.png</logo>
     <icon>https://lchen1388.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, Gridea</rights>
-    <entry>
-        <title type="html"><![CDATA[Mysql 密码策略设置]]></title>
-        <id>https://lchen1388.github.io/post/mysql-mi-ma-ce-lue-she-zhi/</id>
-        <link href="https://lchen1388.github.io/post/mysql-mi-ma-ce-lue-she-zhi/">
-        </link>
-        <updated>2020-12-10T01:14:56.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="mysql-密码策略设置">Mysql 密码策略设置</h3>
-<h4 id="说明">说明</h4>
-<p>Mysql5.6.6+版本对密码强度进行了调整，增加了validate_password插件。而Mysql8.0引入了服务器组件，该插件则通过服务器组件重新实现。</p>
-<p>使用该插件后会检查设置的密码是否符合当前策略。受影响的语句和函数有：create user， grant， set password， password()， old password</p>
-<pre><code># 初始化root密码
-mysql&gt; ALTER USER 'root'@'localhost' IDENTIFIED BY '234567';
-ERROR 1819 (HY000): Your password does not satisfy the current policy requirements
-</code></pre>
-<p>修改密码时会触发安全校验，不符合规则就会报错。</p>
-<h4 id="相关参数">相关参数</h4>
-<pre><code>mysql&gt; SHOW VARIABLES LIKE 'validate_password%';
-</code></pre>
-<figure data-type="image" tabindex="1"><img src="https://lchen1388.github.io/post-images/1607563072342.png" alt="" loading="lazy"></figure>
-<p>validate_password.check_user_name：用户名检测（用户名作为密码检测）<br>
-<img src="https://lchen1388.github.io/post-images/1607563081351.png" alt="" loading="lazy"></p>
-<p>validate_password.dictionary_file：字典表文件路径，密码在字典表中才能满足条件<br>
-validate_password.length：密码最小长度<br>
-validate_password.mixed_case_count：密码包含的字母个数<br>
-validate_password.number_count：密码包含的数字个数<br>
-validate_password.policy：密码策略等级</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Policy</th>
-<th style="text-align:left">Tests Performed</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><code>0</code> or <code>LOW</code></td>
-<td style="text-align:left">Length</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>1</code> or <code>MEDIUM</code></td>
-<td style="text-align:left">Length; numeric, lowercase/uppercase, and special characters</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>2</code> or <code>STRONG</code></td>
-<td style="text-align:left">Length; numeric, lowercase/uppercase, and special characters; dictionary file</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>low：只匹配长度</li>
-<li>medium：匹配除字典表的其他规则</li>
-<li>strong：匹配所有规则</li>
-</ul>
-<p>validate_password.special_char_count：密码包含的特殊字符个数</p>
-<h4 id="参数修改">参数修改</h4>
-<pre><code># 设置策略等级为low
-mysql&gt; set global validate_password.policy=0;
-# 设置密码至少为6位
-mysql&gt; set global validate_password.length=6;
-# 其他几项配置同上
-...
-</code></pre>
-<h4 id="强度评估">强度评估</h4>
-<p>通过<code>VALIDATE_PASSWORD_STRENGTH(str)</code>函数可以对密码强度进行判断。共有5级返回值，从0（弱）到100（强）：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Password Test</th>
-<th style="text-align:left">Return Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Length &lt; 4</td>
-<td style="text-align:left">0</td>
-</tr>
-<tr>
-<td style="text-align:left">Length ≥ 4 and &lt; <a href="https://dev.mysql.com/doc/refman/8.0/en/validate-password-options-variables.html#sysvar_validate_password.length"><code>validate_password.length</code></a></td>
-<td style="text-align:left">25</td>
-</tr>
-<tr>
-<td style="text-align:left">Satisfies policy 1 (<code>LOW</code>)</td>
-<td style="text-align:left">50</td>
-</tr>
-<tr>
-<td style="text-align:left">Satisfies policy 2 (<code>MEDIUM</code>)</td>
-<td style="text-align:left">75</td>
-</tr>
-<tr>
-<td style="text-align:left">Satisfies policy 3 (<code>STRONG</code>)</td>
-<td style="text-align:left">100</td>
-</tr>
-</tbody>
-</table>
-<p>如果validate_password.check_user_name启用，并且用户名和密码一致时，VALIDATE_PASSWORD_STRENGTH（）返回0</p>
-]]></content>
-    </entry>
+    <rights>All rights reserved 2021, Gridea</rights>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://lchen1388.github.io/post/hello-gridea/</id>
